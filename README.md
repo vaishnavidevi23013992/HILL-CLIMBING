@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name: VAISHNAVIDEVI V        </h3>
-<h3>Register Number:  212223040230    </h3>
+<h3>Name: VAISHNAVIDEVI V </h3>
+<h3>Register Number: 212223040230            </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -38,50 +38,59 @@ Feedback is provided in terms of heuristic function
 <h3>Step-4:</h3>
 <p> Lopp Step -2 and Step-3  until we achieve the score to be Zero to achieve Global Minima.</p>
 
-## PROGRAM:
-```
+### Program
 
+```
 import random
 import string
+
 def generate_random_solution(answer):
-    l=len(answer)
+    l = len(answer) 
     return [random.choice(string.printable) for _ in range(l)]
-def evaluate(solution,answer):
-    print(solution)
-    target=list(answer)
-    diff=0
+
+def evaluate(solution, answer):
+    print("Solution:", "".join(solution))
+    target = list(answer)
+    diff = 0
     for i in range(len(target)):
-        s=solution[i]
-        t=target[i]
-        #to calculate the "difference" between two strings, character by character.
-        #ord(s) - ord(t) calculates the difference between the ASCII values of the characters s and t.
-         #abs() takes the absolute value of this difference to ensure that it is non-negative. This is important because the difference could be negative if s is less than t in terms of ASCII value.
-         #The absolute value ensures that the difference is always positive or zero.
-        diff += abs(ord(s) - ord(t))    return diff
+        s = solution[i]
+        t = target[i]
+        diff += abs(ord(s) - ord(t))
+    return diff
+
 def mutate_solution(solution):
-    ind=random.randint(0,len(solution)-1)
-    solution[ind]=random.choice(string.printable)
+    ind = random.randint(0, len(solution) - 1)
+    solution[ind] = random.choice(string.printable)
     return solution
+
 def SimpleHillClimbing():
-    answer="Artificial Intelligence"
-    best=generate_random_solution(answer)
-    best_score=evaluate(best,answer)
+    answer = "Artificial Intelligence"
+    best = generate_random_solution(answer)
+    best_score = evaluate(best, answer)
     while True:
-       print("Score:", best_score, " Solution: ", "".join(best))  
-       if best_score == 0:
-           break
-       new_solution = mutate_solution(list(best))
-       score = evaluate(new_solution, answer)
-       if score < best_score:
-           best = new_solution
-           best_score = score
+        print("Score:", best_score, "Solution:", "".join(best))
+        if best_score == 0:
+            break
+        new_solution = mutate_solution(list(best))
+        score = evaluate(new_solution, answer)
+        if score < best_score:
+            best = new_solution
+            best_score = score
+
+
+# answer = "Artificial Intelligence"
+# print(generate_random_solution(answer))
+# solution = generate_random_solution(answer)
+# print(evaluate(solution, answer))
+
 SimpleHillClimbing()
+
 ```
 
 <hr>
 <h2>Sample Input and Output</h2>
 <h2>Sample String:</h2> Artificial Intelligence
-<h2>Output:</h2>
+<h2>Sample Output:</h2>
 Score: 643  Solution :  8RzF:oG ]%;CPORRMe!zGvk<br>
 Score: 609  Solution :  8RzF:oG ]%;CPqRRMe!zGvk<br>
 Score: 604  Solution :  8RzF:oG ]%;CPqRRMe!zGqk<br>
@@ -100,5 +109,10 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
 
-## RESULT:
- Thus the Simple Hill Climb Algorithm Implemented successfully.
+### Output:
+
+![Screenshot 2025-04-28 091747](https://github.com/user-attachments/assets/bfd71522-4d9c-4483-81e8-463ca1db674d)
+
+
+### Result:
+Thus the Simple Hill Climb Algorithm Implemented successfully.
